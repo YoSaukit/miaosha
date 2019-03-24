@@ -1,6 +1,7 @@
 package com.miaoshaproject;
 
 import com.miaoshaproject.dao.UserDOMapper;
+import com.miaoshaproject.dataobject.UserDO;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +23,13 @@ public class App
     private UserDOMapper userDOMapper;
     @RequestMapping("/")
     public String home(){
-        return "Hello World!";
+        UserDO userDO = userDOMapper.selectByPrimaryKey(1);
+        if(userDO == null){
+            return "用户对象不存在";
+        }else{
+            return userDO.getName();
+        }
+
     }
     public static void main( String[] args )
     {
