@@ -28,7 +28,7 @@ import java.util.Random;
 @CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
 //DEFAULT_ALLOWED_HEADERS:允许跨域传输所有的header参数，将用于使用token放入header域做session共享的跨域请求
 //DEFAULT_ALLOWED_CREDENTIALS=true；需配合前端设置xhrFields授信后使用跨域session共享
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -38,6 +38,25 @@ public class UserController extends BaseController{
     //并且有thread local清除的机制
     @Autowired
     private HttpServletRequest httpServletRequest;
+
+    //用户登录
+    @RequestMapping(value = "/login", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
+    @ResponseBody
+    public CommonReturnType login(@RequestParam(name = "telephone") String telephone,
+                                  @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
+        //入参校验
+        if (org.apache.commons.lang3.StringUtils.isEmpty(telephone) ||
+                StringUtils.isEmpty(password)) {
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+        }
+        //用户登录服务，用来校验用户登录是否合法
+        UserModel userModel = userService.validateLogin(telephone, this.EncodeByMd5(password));
+        //讲登录凭证加入到用户登录成功的session
+        this.httpServletRequest.getSession().setAttribute("IS_LOGIN",true);
+        this.httpServletRequest.getSession().setAttribute("LOGIN_USER",userModel);
+
+        return CommonReturnType.create(null);
+    }
 
     //register
     @RequestMapping(value = "/register", method = {RequestMethod.POST},consumes = {CONTENT_TYPE_FORMED})
