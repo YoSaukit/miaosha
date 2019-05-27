@@ -1,2 +1,6 @@
 # miaosha
-miaoshao project
+模拟电商平台
+用户注册登录
+商品列表
+商品下单
+秒杀
