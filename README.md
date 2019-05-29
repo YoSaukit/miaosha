@@ -1,5 +1,5 @@
 # miaosha
-<<<<<<< HEAD
+Springboot+bootstrap+Mybatis+MySQL
 模拟电商平台
 用户注册登录
 商品列表
@@ -15,4 +15,4 @@ miaoshao project
 #### 数据库 ：                  mysql   redis
 #### 运行环境 :                阿里云主机   本地电脑
 
->>>>>>> 完成秒杀模块开发
+
