@@ -1,27 +1,27 @@
 var url = "/admin/tags/indexcategoryjson";
 
 $('#dataTables-tagcategory').DataTable({
-	"bPaginate": true,
+    "bPaginate": true,
     "bLengthChange": false,
     "bSort": false,
     "bFilter": true,
     "bAutoWidth": true,
     "bStateSave": true,
     "bServerSide": false,
-    "bProcessing":true,
+    "bProcessing": true,
     "iDisplayLength": 20,
     "searching": true,
     "deferRender": true,
-    "bDestroy":true,
-    ajax:{
-    	"url" : url,
-    	"dataSrc" : "data"
+    "bDestroy": true,
+    ajax: {
+        "url": url,
+        "dataSrc": "data"
     },
-    columns : [   
-         {"data" : "id"},
-         {"data" : "name"},
-         {"data" : "useCount"}
-     ],
+    columns: [
+        {"data": "id"},
+        {"data": "name"},
+        {"data": "useCount"}
+    ],
     columnDefs: [
 //                 {
 //   		//   指定第一列，从0开始，0表示第一列，1表示第二列……
@@ -35,11 +35,11 @@ $('#dataTables-tagcategory').DataTable({
 //        	}
 //        }
 //	},
-    {
-        //屏蔽警告
-    	 sDefaultContent : '',
-         aTargets : [ '_all' ]
-    }
+        {
+            //屏蔽警告
+            sDefaultContent: '',
+            aTargets: ['_all']
+        }
     ],
     language: {
         "sProcessing": "处理中...",
@@ -65,12 +65,12 @@ $('#dataTables-tagcategory').DataTable({
             "sSortDescending": ": 以降序排列此列"
         }
     }
-        
-});	
 
-var CategoryAdd = function() {
+});
 
-    var handleCategoryAdd = function() {
+var CategoryAdd = function () {
+
+    var handleCategoryAdd = function () {
 
         $('#form').validate({
             errorElement: 'span', //default input error message container
@@ -83,35 +83,35 @@ var CategoryAdd = function() {
             },
 
             messages: {
-            	name: {
+                name: {
                     required: "请输入名称"
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function (event, validator) { //display error alert on form submit   
                 $('.alert-danger', $('.form')).show();
             },
 
-            highlight: function(element) { // hightlight error inputs
+            highlight: function (element) { // hightlight error inputs
                 $(element)
                     .closest('.form-group').addClass('has-error'); // set error class to the control group
             },
 
-            success: function(label) {
+            success: function (label) {
                 label.closest('.form-group').removeClass('has-error');
                 label.remove();
             },
 
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.insertAfter(element.closest('input'));
             },
 
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 form.submit(); // form validation success, call ajax form submit
             }
         });
 
-        $('.form input').keypress(function(e) {
+        $('.form input').keypress(function (e) {
             if (e.which == 13) {
                 if ($('.form').validate().form()) {
                     $('#form').submit(); //form validation success, call ajax form submit
@@ -123,7 +123,7 @@ var CategoryAdd = function() {
 
     return {
         //main function to initiate the module
-        init: function() {
+        init: function () {
 
             handleCategoryAdd();
 
@@ -133,29 +133,29 @@ var CategoryAdd = function() {
 
 }();
 
-jQuery(document).ready(function() {
-	CategoryAdd.init();
+jQuery(document).ready(function () {
+    CategoryAdd.init();
 });
 
-function addCategory(){
+function addCategory() {
 
-	$.ajax( {    
-	    url:'/admin/tags/createcategory',    
-	    data:$('#form').serialize(),    
-	    type:'POST',
-	    processData:true,
-	    contentType:"application/x-www-form-urlencoded",
-	    success:function(data) {   
-	    	alert(data.status);
-	    	if(data.status=="success"){
-	    		window.location.reload(true);
-	    	}else if(data.status=="fail"){
-	    		alert(data.data.errMessage);
-	    	}
-	     },    
-	     error : function(e) {    
-	          // view("异常！");    
-	          alert(e);    
-	     }    
-	}); 
+    $.ajax({
+        url: '/admin/tags/createcategory',
+        data: $('#form').serialize(),
+        type: 'POST',
+        processData: true,
+        contentType: "application/x-www-form-urlencoded",
+        success: function (data) {
+            alert(data.status);
+            if (data.status == "success") {
+                window.location.reload(true);
+            } else if (data.status == "fail") {
+                alert(data.data.errMessage);
+            }
+        },
+        error: function (e) {
+            // view("异常！");    
+            alert(e);
+        }
+    });
 }

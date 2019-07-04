@@ -11,7 +11,7 @@ public class ItemModel {
     private String title;
 
     @NotNull(message = "商品价格不能为空")
-    @Min(value=0, message = "商品价格不能为0")
+    @Min(value = 0, message = "商品价格不能为0")
     private BigDecimal price;
 
     @NotNull(message = "库存不能不填")

@@ -1,7 +1,6 @@
+var AppUpdate = function () {
 
-var AppUpdate = function() {
-
-    var handleAppUpdate = function() {
+    var handleAppUpdate = function () {
 
         $('#form').validate({
             errorElement: 'span', //default input error message container
@@ -24,7 +23,7 @@ var AppUpdate = function() {
             },
 
             messages: {
-            	name: {
+                name: {
                     required: "请输入名称"
                 },
                 icon_url: {
@@ -39,30 +38,30 @@ var AppUpdate = function() {
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function (event, validator) { //display error alert on form submit
                 $('.alert-danger', $('.form')).show();
             },
 
-            highlight: function(element) { // hightlight error inputs
+            highlight: function (element) { // hightlight error inputs
                 $(element)
                     .closest('.form-group').addClass('has-error'); // set error class to the control group
             },
 
-            success: function(label) {
+            success: function (label) {
                 label.closest('.form-group').removeClass('has-error');
                 label.remove();
             },
 
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.insertAfter(element.closest('input'));
             },
 
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 form.submit(); // form validation success, call ajax form submit
             }
         });
 
-        $('.form input').keypress(function(e) {
+        $('.form input').keypress(function (e) {
             if (e.which == 13) {
                 if ($('.form').validate().form()) {
                     $('#form').submit(); //form validation success, call ajax form submit
@@ -74,9 +73,9 @@ var AppUpdate = function() {
 
     return {
         //main function to initiate the module
-        init: function() {
+        init: function () {
 
-        	handleAppUpdate();
+            handleAppUpdate();
 
         }
 
@@ -84,29 +83,29 @@ var AppUpdate = function() {
 
 }();
 
-jQuery(document).ready(function() {
-	AppUpdate.init();
+jQuery(document).ready(function () {
+    AppUpdate.init();
 });
 
-function updateApp(){
+function updateApp() {
 
-	$.ajax( {    
-	    url:'/admin/applications/update',    
-	    data:$('#form').serialize(),    
-	    type:'POST',
-	    processData:true,
-	    contentType:"application/x-www-form-urlencoded",
-	    success:function(data) {   
-	    	alert(data.status);
-	    	if(data.status=="success"){
-	    		window.location.reload(true);
-	    	}else if(data.status=="fail"){
-	    		alert(data.data.errMessage);
-	    	}
-	     },    
-	     error : function(e) {    
-	          // view("异常！");    
-	          alert(e);    
-	     }    
-	}); 
+    $.ajax({
+        url: '/admin/applications/update',
+        data: $('#form').serialize(),
+        type: 'POST',
+        processData: true,
+        contentType: "application/x-www-form-urlencoded",
+        success: function (data) {
+            alert(data.status);
+            if (data.status == "success") {
+                window.location.reload(true);
+            } else if (data.status == "fail") {
+                alert(data.data.errMessage);
+            }
+        },
+        error: function (e) {
+            // view("异常！");
+            alert(e);
+        }
+    });
 }

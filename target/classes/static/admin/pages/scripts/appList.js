@@ -1,46 +1,46 @@
 var url = "/admin/applications/indexjson";
-	
+
 $('#dataTables-app').DataTable({
-	"bPaginate": true,
+    "bPaginate": true,
     "bLengthChange": false,
     "bSort": false,
     "bFilter": true,
     "bAutoWidth": true,
     "bStateSave": true,
     "bServerSide": false,
-    "bProcessing":true,
+    "bProcessing": true,
     "iDisplayLength": 20,
     "searching": true,
     "deferRender": true,
-    "bDestroy":true,
-    ajax:{
-    	"url" : url,
-    	"dataSrc" : "data.content"
+    "bDestroy": true,
+    ajax: {
+        "url": url,
+        "dataSrc": "data.content"
     },
-    columns : [   
-         {"data" : "id"},  
-         {"data" : "name"}, 
-         {"data" : "iconUrl"}, 
-         {"data" : "id"}
-     ],
+    columns: [
+        {"data": "id"},
+        {"data": "name"},
+        {"data": "iconUrl"},
+        {"data": "id"}
+    ],
     columnDefs: [{
-		//   指定第一列，从0开始，0表示第一列，1表示第二列……
-     	targets: 2,
-     	render: function(data, type, row) {
-         	return "<img src='"+data+"' style='width:100px;' />";
-         }
- 	},{
-     	targets: 3,
-     	render: function(data, type, row) {
-         	return "<a href='get?id="+data+"' class='btn btn-outline btn-circle red'><i class='fa fa-info-circle'></i> 查看详情</a>";
-         	
-         }
- 	},
-    {
-        //屏蔽警告
-    	 sDefaultContent : '',
-         aTargets : [ '_all' ]
-    }
+        //   指定第一列，从0开始，0表示第一列，1表示第二列……
+        targets: 2,
+        render: function (data, type, row) {
+            return "<img src='" + data + "' style='width:100px;' />";
+        }
+    }, {
+        targets: 3,
+        render: function (data, type, row) {
+            return "<a href='get?id=" + data + "' class='btn btn-outline btn-circle red'><i class='fa fa-info-circle'></i> 查看详情</a>";
+
+        }
+    },
+        {
+            //屏蔽警告
+            sDefaultContent: '',
+            aTargets: ['_all']
+        }
     ],
     language: {
         "sProcessing": "处理中...",
@@ -66,12 +66,12 @@ $('#dataTables-app').DataTable({
             "sSortDescending": ": 以降序排列此列"
         }
     }
-        
-});	
 
-var AppAdd = function() {
+});
 
-    var handleAppAdd = function() {
+var AppAdd = function () {
+
+    var handleAppAdd = function () {
 
         $('#form').validate({
             errorElement: 'span', //default input error message container
@@ -88,7 +88,7 @@ var AppAdd = function() {
             },
 
             messages: {
-            	name: {
+                name: {
                     required: "请输入名称"
                 },
                 iconUrl: {
@@ -97,30 +97,30 @@ var AppAdd = function() {
                 }
             },
 
-            invalidHandler: function(event, validator) { //display error alert on form submit   
+            invalidHandler: function (event, validator) { //display error alert on form submit   
                 $('.alert-danger', $('.form')).show();
             },
 
-            highlight: function(element) { // hightlight error inputs
+            highlight: function (element) { // hightlight error inputs
                 $(element)
                     .closest('.form-group').addClass('has-error'); // set error class to the control group
             },
 
-            success: function(label) {
+            success: function (label) {
                 label.closest('.form-group').removeClass('has-error');
                 label.remove();
             },
 
-            errorPlacement: function(error, element) {
+            errorPlacement: function (error, element) {
                 error.insertAfter(element.closest('input'));
             },
 
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 form.submit(); // form validation success, call ajax form submit
             }
         });
 
-        $('.form input').keypress(function(e) {
+        $('.form input').keypress(function (e) {
             if (e.which == 13) {
                 if ($('.form').validate().form()) {
                     $('#form').submit(); //form validation success, call ajax form submit
@@ -132,9 +132,9 @@ var AppAdd = function() {
 
     return {
         //main function to initiate the module
-        init: function() {
+        init: function () {
 
-        	handleAppAdd();
+            handleAppAdd();
 
         }
 
@@ -142,29 +142,29 @@ var AppAdd = function() {
 
 }();
 
-jQuery(document).ready(function() {
-	AppAdd.init();
+jQuery(document).ready(function () {
+    AppAdd.init();
 });
 
-function addApp(){
+function addApp() {
 
-	$.ajax( {    
-	    url:'/admin/applications/create',    
-	    data:$('#form').serialize(),    
-	    type:'POST',
-	    processData:true,
-	    contentType:"application/x-www-form-urlencoded",
-	    success:function(data) {   
-	    	alert(data.status);
-	    	if(data.status=="success"){
-	    		window.location.reload(true);
-	    	}else if(data.status=="fail"){
-	    		alert(data.data.errMessage);
-	    	}
-	     },    
-	     error : function(e) {    
-	          // view("异常！");    
-	          alert(e);    
-	     }    
-	}); 
+    $.ajax({
+        url: '/admin/applications/create',
+        data: $('#form').serialize(),
+        type: 'POST',
+        processData: true,
+        contentType: "application/x-www-form-urlencoded",
+        success: function (data) {
+            alert(data.status);
+            if (data.status == "success") {
+                window.location.reload(true);
+            } else if (data.status == "fail") {
+                alert(data.data.errMessage);
+            }
+        },
+        error: function (e) {
+            // view("异常！");    
+            alert(e);
+        }
+    });
 }

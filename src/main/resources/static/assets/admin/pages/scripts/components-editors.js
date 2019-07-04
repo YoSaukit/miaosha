@@ -1,5 +1,5 @@
 var ComponentsEditors = function () {
-    
+
     var handleWysihtml5 = function () {
         if (!jQuery().wysihtml5) {
             return;
@@ -15,7 +15,7 @@ var ComponentsEditors = function () {
     var handleSummernote = function () {
         $('#summernote_1').summernote({
             height: 600,
-            onImageUpload: function (files,editor, $editable) { //the onImageUpload API
+            onImageUpload: function (files, editor, $editable) { //the onImageUpload API
                 //img = sendFile(files[0]);
                 // console.log(files);
                 // img = files;
@@ -36,7 +36,7 @@ var ComponentsEditors = function () {
                         var url = json.data.originFileUrl;
                         editor.insertImage($editable, url); // the insertImage API
                     },
-                    fail:function(e){
+                    fail: function (e) {
                         alert(e);
                     }
                 });

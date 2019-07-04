@@ -34,7 +34,7 @@ var ComponentsPickers = function () {
             });
 
             // handle input group button click
-            $('.timepicker').parent('.input-group').on('click', '.input-group-btn', function(e){
+            $('.timepicker').parent('.input-group').on('click', '.input-group-btn', function (e) {
                 e.preventDefault();
                 $(this).parent('.input-group').find('.timepicker').timepicker('showWidget');
             });
@@ -59,7 +59,7 @@ var ComponentsPickers = function () {
                 console.log("Callback has been called!");
                 $('#defaultrange input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
-        );        
+        );
 
         $('#defaultrange_modal').daterangepicker({
                 opens: (Metronic.isRTL() ? 'left' : 'right'),
@@ -73,11 +73,11 @@ var ComponentsPickers = function () {
             function (start, end) {
                 $('#defaultrange_modal input').val(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
-        );  
+        );
 
         // this is very important fix when daterangepicker is used in modal. in modal when daterange picker is opened and mouse clicked anywhere bootstrap modal removes the modal-open class from the body element.
         // so the below code will fix this issue.
-        $('#defaultrange_modal').on('click', function(){
+        $('#defaultrange_modal').on('click', function () {
             if ($('#daterangepicker_modal').is(":visible") && $('body').hasClass("modal-open") == false) {
                 $('body').addClass("modal-open");
             }
@@ -202,7 +202,7 @@ var ComponentsPickers = function () {
         });
         $('.colorpicker-rgba').colorpicker();
     }
-   
+
 
     return {
         //main function to initiate the module

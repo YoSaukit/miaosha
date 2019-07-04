@@ -1,6 +1,6 @@
 /**
-Core script to handle the entire theme and core functions
-**/
+ Core script to handle the entire theme and core functions
+ **/
 var Metronic = function () {
 
     // IE mode
@@ -31,14 +31,14 @@ var Metronic = function () {
             isRTL = true;
         }
 
-        isIE8 = !! navigator.userAgent.match(/MSIE 8.0/);
-        isIE9 = !! navigator.userAgent.match(/MSIE 9.0/);
-        isIE10 = !! navigator.userAgent.match(/MSIE 10.0/);
+        isIE8 = !!navigator.userAgent.match(/MSIE 8.0/);
+        isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
+        isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
 
         if (isIE10) {
             jQuery('html').addClass('ie10'); // detect IE10 version
         }
-        
+
         if (isIE10 || isIE9 || isIE8) {
             jQuery('html').addClass('ie'); // detect IE10 version
         }
@@ -101,13 +101,11 @@ var Metronic = function () {
                     cache: false,
                     url: url,
                     dataType: "html",
-                    success: function(res) 
-                    {                        
+                    success: function (res) {
                         Metronic.unblockUI(el);
                         el.html(res);
                     },
-                    error: function(xhr, ajaxOptions, thrownError)
-                    {
+                    error: function (xhr, ajaxOptions, thrownError) {
                         Metronic.unblockUI(el);
                         var msg = 'Error on reloading the content. Please check your connection and try again.';
                         if (error == "toastr" && toastr) {
@@ -126,7 +124,7 @@ var Metronic = function () {
                 window.setTimeout(function () {
                     Metronic.unblockUI(el);
                 }, 1000);
-            }            
+            }
         });
 
         // load ajax data on page init
@@ -180,10 +178,10 @@ var Metronic = function () {
         //activate tab if tab id provided in the URL
         if (location.hash) {
             var tabid = location.hash.substr(1);
-            $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function(){
+            $('a[href="#' + tabid + '"]').parents('.tab-pane:hidden').each(function () {
                 var tabid = $(this).attr("id");
-                $('a[href="#' + tabid + '"]').click();    
-            });            
+                $('a[href="#' + tabid + '"]').click();
+            });
             $('a[href="#' + tabid + '"]').click();
         }
     }
@@ -192,17 +190,17 @@ var Metronic = function () {
     var handleModals = function () {
         // fix stackable modal issue: when 2 or more modals opened, closing one of modal will remove .modal-open class. 
         $('body').on('hide.bs.modal', function () {
-           if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
-              $('html').addClass('modal-open');
-           } else if ($('.modal:visible').size() <= 1) {
-              $('html').removeClass('modal-open');
-           }
+            if ($('.modal:visible').size() > 1 && $('html').hasClass('modal-open') == false) {
+                $('html').addClass('modal-open');
+            } else if ($('.modal:visible').size() <= 1) {
+                $('html').removeClass('modal-open');
+            }
         });
-            
+
         $('body').on('show.bs.modal', '.modal', function () {
             if ($(this).hasClass("modal-scroll")) {
                 $('body').addClass("modal-open-noscroll");
-            } 
+            }
         });
 
         $('body').on('hide.bs.modal', '.modal', function () {
@@ -212,7 +210,7 @@ var Metronic = function () {
 
     // Handles Bootstrap Tooltips.
     var handleTooltips = function () {
-       jQuery('.tooltips').tooltip();
+        jQuery('.tooltips').tooltip();
     }
 
     // Handles Bootstrap Dropdowns
@@ -226,7 +224,7 @@ var Metronic = function () {
     }
 
     var handleAlerts = function () {
-        $('body').on('click', '[data-close="alert"]', function(e){
+        $('body').on('click', '[data-close="alert"]', function (e) {
             $(this).parent('.alert').hide();
             e.preventDefault();
         });
@@ -269,8 +267,8 @@ var Metronic = function () {
             $(this).slimScroll({
                 allowPageScroll: true, // allow page scroll when the element scroll is ended
                 size: '7px',
-                color: ($(this).attr("data-handle-color")  ? $(this).attr("data-handle-color") : '#bbb'),
-                railColor: ($(this).attr("data-rail-color")  ? $(this).attr("data-rail-color") : '#eaeaea'),
+                color: ($(this).attr("data-handle-color") ? $(this).attr("data-handle-color") : '#bbb'),
+                railColor: ($(this).attr("data-rail-color") ? $(this).attr("data-rail-color") : '#eaeaea'),
                 position: isRTL ? 'left' : 'right',
                 height: height,
                 alwaysVisible: ($(this).attr("data-always-visible") == "1" ? true : false),
@@ -331,7 +329,7 @@ var Metronic = function () {
     }
 
     // Handle Select2 Dropdowns
-    var handleSelect2 = function() {
+    var handleSelect2 = function () {
         if (jQuery().select2) {
             $('.select2me').select2({
                 placeholder: "Select",
@@ -351,7 +349,7 @@ var Metronic = function () {
             //Core handlers
             handleInit(); // initialize core variables
             handleOnResize(); // set and handle responsive    
-            
+
             //UI Component handlers            
             handleUniform(); // hanfle custom radio & checkboxes
             handleBootstrapSwitch(); // handle bootstrap switch plugin
@@ -380,7 +378,7 @@ var Metronic = function () {
             handleBootstrapSwitch(); // handle bootstrap switch plugin
             handleDropdownHover() // handles dropdown hover       
         },
-        
+
         //public function to remember last opened popover that needs to be closed on click
         setLastPopedPopover: function (el) {
             lastPopedPopover = el;
@@ -392,18 +390,18 @@ var Metronic = function () {
         },
 
         //public functon to call _runresizeHandlers
-        runResizeHandlers: function() {
-            _runResizeHandlers();   
+        runResizeHandlers: function () {
+            _runResizeHandlers();
         },
-        
+
         // wrMetronicer function to scroll(focus) to an element
         scrollTo: function (el, offeset) {
             var pos = (el && el.size() > 0) ? el.offset().top : 0;
 
-             if (el) {
-                if ($('body').hasClass('page-header-fixed')) { 
-                    pos = pos - $('.page-header').height(); 
-                }            
+            if (el) {
+                if ($('body').hasClass('page-header-fixed')) {
+                    pos = pos - $('.page-header').height();
+                }
                 pos = pos + (offeset ? offeset : -1 * el.height());
             }
 
@@ -422,18 +420,18 @@ var Metronic = function () {
             var options = $.extend(true, {}, options);
             var html = '';
             if (options.iconOnly) {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '')+'"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""></div>';
+                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""></div>';
             } else if (options.textOnly) {
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '')+'"><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
-            } else {    
-                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '')+'"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
+                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
+            } else {
+                html = '<div class="loading-message ' + (options.boxed ? 'loading-message-boxed' : '') + '"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif" align=""><span>&nbsp;&nbsp;' + (options.message ? options.message : 'LOADING...') + '</span></div>';
             }
 
             if (options.target) { // element blocking
                 var el = jQuery(options.target);
                 if (el.height() <= ($(window).height())) {
                     options.cenrerY = true;
-                }            
+                }
                 el.block({
                     message: html,
                     baseZ: options.zIndex ? options.zIndex : 1000,
@@ -446,7 +444,7 @@ var Metronic = function () {
                     },
                     overlayCSS: {
                         backgroundColor: options.overlayColor ? options.overlayColor : '#000',
-                        opacity: options.boxed ? 0.05 : 0.1, 
+                        opacity: options.boxed ? 0.05 : 0.1,
                         cursor: 'wait'
                     }
                 });
@@ -465,7 +463,7 @@ var Metronic = function () {
                         cursor: 'wait'
                     }
                 });
-            }            
+            }
         },
 
         // wrMetronicer function to  un-block element(finish loading)
@@ -482,16 +480,16 @@ var Metronic = function () {
             }
         },
 
-        startPageLoading: function(message) {
+        startPageLoading: function (message) {
             $('.page-loading').remove();
             $('body').append('<div class="page-loading"><img src="' + this.getGlobalImgPath() + 'loading-spinner-grey.gif"/>&nbsp;&nbsp;<span>' + (message ? message : 'Loading...') + '</span></div>');
         },
 
-        stopPageLoading: function() {
+        stopPageLoading: function () {
             $('.page-loading').remove();
         },
 
-        alert: function(options) {
+        alert: function (options) {
 
             options = $.extend(true, {
                 container: "", // alerts parent container(by default placed after the page breadcrumbs)
@@ -507,9 +505,10 @@ var Metronic = function () {
 
             var id = Metronic.getUniqueID("Metronic_alert");
 
-            var html = '<div id="'+id+'" class="Metronic-alerts alert alert-'+options.type+' fade in">' + (options.close ? '<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>' : '' ) + (options.icon != "" ? '<i class="fa-lg fa fa-'+options.icon + '"></i>  ' : '') + options.message+'</div>'
+            var html = '<div id="' + id + '" class="Metronic-alerts alert alert-' + options.type + ' fade in">' + (options.close ? '<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>' : '') + (options.icon != "" ? '<i class="fa-lg fa fa-' + options.icon + '"></i>  ' : '') + options.message + '</div>'
 
-            if (options.reset) {0
+            if (options.reset) {
+                0
                 $('.Metronic-alerts').remove();
             }
 
@@ -528,7 +527,7 @@ var Metronic = function () {
             }
 
             if (options.closeInSeconds > 0) {
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#' + id).remove();
                 }, options.closeInSeconds * 1000);
             }
@@ -604,7 +603,7 @@ var Metronic = function () {
             }
         },
 
-        getUniqueID: function(prefix) {
+        getUniqueID: function (prefix) {
             return 'prefix_' + Math.floor(Math.random() * (new Date()).getTime());
         },
 

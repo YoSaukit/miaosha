@@ -2,7 +2,7 @@ var ComponentsKnobDials = function () {
 
     return {
         //main function to initiate the module
-        
+
         init: function () {
             //knob does not support ie8 so skip it
             if (!jQuery().knob || Metronic.isIE8()) {
@@ -15,7 +15,7 @@ var ComponentsKnobDials = function () {
                 'thickness': 0.2,
                 'tickColorizeValues': true,
                 'skin': 'tron'
-            });  
+            });
         }
 
     };

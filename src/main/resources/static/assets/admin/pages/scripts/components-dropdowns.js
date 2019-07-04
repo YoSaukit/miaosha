@@ -35,10 +35,11 @@ var ComponentsDropdowns = function () {
         });
 
         function format(state) {
-        	return state.text;
+            return state.text;
             if (state.id) return state.text; // optgroup
             return "<img class='flag' src='../../assets/global/img/flags/" + "ug.png'/>&nbsp;&nbsp;" + state.text;
         }
+
         $("#select2_sample4").select2({
             placeholder: "组织类型",
             allowClear: true,
@@ -78,8 +79,8 @@ var ComponentsDropdowns = function () {
             minimumInputLength: 1,
             ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
                 url: "/admin/category/searchcategory",
-                type:"GET",
-                contentType : "application/x-www-form-urlencoded",
+                type: "GET",
+                contentType: "application/x-www-form-urlencoded",
                 dataType: 'application/json',
                 data: function (term, page) {
                     return {
@@ -157,6 +158,7 @@ var ComponentsDropdowns = function () {
             if (!state.id) return state.text; // optgroup
             return "<img class='flag' src='../../assets/global/img/flags/" + state.id.toLowerCase() + ".png'/>&nbsp;&nbsp;" + state.text;
         }
+
         $("#select2_sample_modal_4").select2({
             allowClear: true,
             formatResult: format,
@@ -235,7 +237,7 @@ var ComponentsDropdowns = function () {
         });
     }
 
-    var handleBootstrapSelect = function() {
+    var handleBootstrapSelect = function () {
         $('.bs-select').selectpicker({
             iconBase: 'fa',
             tickIcon: 'fa-check'
@@ -251,7 +253,7 @@ var ComponentsDropdowns = function () {
 
     return {
         //main function to initiate the module
-        init: function () {            
+        init: function () {
             handleSelect2();
             handleSelect2Modal();
             handleMultiSelect();

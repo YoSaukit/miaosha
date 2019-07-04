@@ -26,12 +26,12 @@ var TableDatatablesButtons = function () {
             //},
 
             buttons: [
-                { extend: 'print', className: 'btn dark btn-outline' },
-                { extend: 'copy', className: 'btn red btn-outline' },
-                { extend: 'pdf', className: 'btn green btn-outline' },
-                { extend: 'excel', className: 'btn yellow btn-outline ' },
-                { extend: 'csv', className: 'btn purple btn-outline ' },
-                { extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+                {extend: 'print', className: 'btn dark btn-outline'},
+                {extend: 'copy', className: 'btn red btn-outline'},
+                {extend: 'pdf', className: 'btn green btn-outline'},
+                {extend: 'excel', className: 'btn yellow btn-outline '},
+                {extend: 'csv', className: 'btn purple btn-outline '},
+                {extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
             ],
 
             // setup responsive extension: http://datatables.net/extensions/responsive/
@@ -43,7 +43,7 @@ var TableDatatablesButtons = function () {
             "order": [
                 [0, 'asc']
             ],
-            
+
             "lengthMenu": [
                 [5, 10, 15, 20, -1],
                 [5, 10, 15, 20, "All"] // change per page values here
@@ -60,7 +60,7 @@ var TableDatatablesButtons = function () {
         });
 
         // handle datatable custom tools
-        $('#sample_3_tools > li > a.tool-action').on('click', function() {
+        $('#sample_3_tools > li > a.tool-action').on('click', function () {
             var action = $(this).attr('data-action');
             oTable.DataTable().button(action).trigger();
         });
@@ -83,6 +83,6 @@ var TableDatatablesButtons = function () {
 
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     TableDatatablesButtons.init();
 });

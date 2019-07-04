@@ -1,6 +1,6 @@
 /**
-Core script to handle the entire theme and core functions
-**/
+ Core script to handle the entire theme and core functions
+ **/
 var Layout = function () {
 
     var layoutImgPath = '../../assets/admin/layout/img/';
@@ -45,17 +45,17 @@ var Layout = function () {
                 height = _calculateFixedSidebarViewportHeight();
                 if (body.hasClass('page-footer-fixed') === false) {
                     height = height - $('.page-footer').outerHeight();
-                }                 
+                }
             } else {
                 height = sidebar.height() + 20;
                 var headerHeight = $('.page-header').outerHeight();
-                var footerHeight = $('.page-footer').outerHeight();                
-                if ($(window).width() > 1024 && (height + headerHeight + footerHeight)  < $(window).height()) {
+                var footerHeight = $('.page-footer').outerHeight();
+                if ($(window).width() > 1024 && (height + headerHeight + footerHeight) < $(window).height()) {
                     height = $(window).height() - headerHeight - footerHeight;
                 }
-            }            
+            }
             if (height >= content.height()) {
-                content.attr('style', 'min-height:' + height + 'px'); 
+                content.attr('style', 'min-height:' + height + 'px');
             }
         }
     }
@@ -85,7 +85,7 @@ var Layout = function () {
             parent.children('li.open').children('a').children('.arrow').removeClass('open');
             parent.children('li.open').children('.sub-menu:not(.always-open)').slideUp(200);
             parent.children('li.open').removeClass('open');
-            
+
             var slideOffeset = -200;
 
             if (sub.is(":visible")) {
@@ -139,7 +139,7 @@ var Layout = function () {
             $(this).parents('li').addClass('active');
 
             Metronic.startPageLoading();
-            
+
             if ($(window).width() <= 991 && $('.page-sidebar').hasClass("in")) {
                 $('.navbar-toggle').click();
             }
@@ -157,7 +157,7 @@ var Layout = function () {
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Metronic.stopPageLoading();
-                    pageContentBody.html('<h4>Could not load the requested content.</h4>');                    
+                    pageContentBody.html('<h4>Could not load the requested content.</h4>');
                 }
             });
         });
@@ -172,7 +172,7 @@ var Layout = function () {
             var pageContentBody = $('.page-content .page-content-body');
 
             Metronic.startPageLoading();
-            
+
             if ($(window).width() <= 991 && $('.page-sidebar').hasClass("in")) {
                 $('.navbar-toggle').click();
             }
@@ -199,8 +199,8 @@ var Layout = function () {
     // Helper function to calculate sidebar height for fixed sidebar layout.
     var _calculateFixedSidebarViewportHeight = function () {
         var sidebarHeight = $(window).height() - $('.page-header').outerHeight();
-        if ($('body').hasClass("page-footer-fixed")) { 
-            sidebarHeight = sidebarHeight - $('.page-footer').outerHeight(); 
+        if ($('body').hasClass("page-footer-fixed")) {
+            sidebarHeight = sidebarHeight - $('.page-footer').outerHeight();
         }
 
         return sidebarHeight;
@@ -222,7 +222,7 @@ var Layout = function () {
             handleSidebarAndContentHeight();
             return;
         }
-        
+
         var viewport = Metronic.getViewPort();
         if (viewport.width >= 992) {
             var sidebarHeight = _calculateFixedSidebarViewportHeight();
@@ -241,14 +241,14 @@ var Layout = function () {
     }
 
     // Handles sidebar toggler to close/hide the sidebar.
-    var _initFixedSidebarHoverEffect = function() {
+    var _initFixedSidebarHoverEffect = function () {
         var body = $('body');
         if (body.hasClass('page-sidebar-fixed')) {
-            $('.page-sidebar-menu').on('mouseenter', function(){
+            $('.page-sidebar-menu').on('mouseenter', function () {
                 if (body.hasClass('page-sidebar-closed')) {
                     $(this).removeClass('page-sidebar-menu-closed');
                 }
-            }).on('mouseleave', function(){
+            }).on('mouseleave', function () {
                 if (body.hasClass('page-sidebar-closed')) {
                     $(this).addClass('page-sidebar-menu-closed');
                 }
@@ -268,7 +268,8 @@ var Layout = function () {
         // handle sidebar show/hide
         $('.page-sidebar, .page-header').on('click', '.sidebar-toggler', function (e) {
 
-            setTimeout(function(){}, 500);
+            setTimeout(function () {
+            }, 500);
 
             var sidebar = $('.page-sidebar');
             var sidebarMenu = $('.page-sidebar-menu');
@@ -328,7 +329,7 @@ var Layout = function () {
     // Handles the horizontal menu
     var handleHorizontalMenu = function () {
         //handle tab click
-        $('.page-header').on('click', '.hor-menu a[data-toggle="tab"]', function (e) {     
+        $('.page-header').on('click', '.hor-menu a[data-toggle="tab"]', function (e) {
             e.preventDefault();
             var nav = $(".hor-menu .nav");
             var active_link = nav.find('li.current');
@@ -344,7 +345,7 @@ var Layout = function () {
             $(this).addClass("open");
             $(this).find('.form-control').focus();
 
-            $('.page-header .search-form .form-control').on('blur', function(e){
+            $('.page-header .search-form .form-control').on('blur', function (e) {
                 $(this).closest('.search-form').removeClass("open");
                 $(this).unbind("blur");
             });
@@ -365,7 +366,7 @@ var Layout = function () {
             $(this).closest('.search-form').submit();
         });
 
-        $(document).on('click', '.mega-menu-dropdown .dropdown-menu', function(e) {
+        $(document).on('click', '.mega-menu-dropdown .dropdown-menu', function (e) {
             e.stopPropagation();
         });
     }
@@ -376,7 +377,7 @@ var Layout = function () {
         $('body').on('shown.bs.tab', 'a[data-toggle="tab"]', function () {
             handleSidebarAndContentHeight();
         });
-    }        
+    }
 
     // Handles the go to top button at the footer
     var handleGoTop = function () {
@@ -386,7 +387,7 @@ var Layout = function () {
             e.preventDefault();
         });
     }
-    
+
     // Handle Theme Settings
     var handleTheme = function () {
 
@@ -399,18 +400,13 @@ var Layout = function () {
         $('.sidebar-option', panel).val("default");
         $('.page-header-option', panel).val("fixed");
         $('.page-footer-option', panel).val("default");
-        if ( $('.sidebar-pos-option').attr("disabled") === false) {
+        if ($('.sidebar-pos-option').attr("disabled") === false) {
             $('.sidebar-pos-option', panel).val(Metronic.isRTL() ? 'right' : 'left');
         }
-        
+
         //handle theme layout
         var resetLayout = function () {
-            $("body").
-            removeClass("page-boxed").
-            removeClass("page-footer-fixed").
-            removeClass("page-sidebar-fixed").
-            removeClass("page-header-fixed").
-            removeClass("page-sidebar-reversed");
+            $("body").removeClass("page-boxed").removeClass("page-footer-fixed").removeClass("page-sidebar-fixed").removeClass("page-header-fixed").removeClass("page-sidebar-reversed");
 
             $('.page-header > .page-header-inner').removeClass("container");
 
@@ -490,14 +486,14 @@ var Layout = function () {
                 } else {
                     $("body").removeClass("page-sidebar-fixed");
                     $("page-sidebar-menu").addClass("page-sidebar-menu-default");
-                    $("page-sidebar-menu").removeClass("page-sidebar-menu-fixed");                    
+                    $("page-sidebar-menu").removeClass("page-sidebar-menu-fixed");
                     $('.page-sidebar-menu').unbind('mouseenter').unbind('mouseleave');
                 }
             }
 
             //footer 
             if (footerOption === 'fixed') {
-                $("body").addClass("page-footer-fixed");                
+                $("body").addClass("page-footer-fixed");
             } else {
                 $("body").removeClass("page-footer-fixed");
             }
@@ -535,7 +531,7 @@ var Layout = function () {
             } else {
                 $('.page-logo img').attr('src', '../../assets/admin/layout/img/logo.png');
             }
-            if ($.cookie) {                
+            if ($.cookie) {
                 $.cookie('style_color', color);
             }
         }
@@ -577,7 +573,7 @@ var Layout = function () {
             // reinitialize the layout on window resize
             Metronic.addResizeHandler(handleSidebarAndContentHeight);
             Metronic.addResizeHandler(handleFixedSidebar);
-            
+
             //layout handlers
             handleIOSKeyboard(); // initialize core variables
             handleFixedSidebar(); // handles fixed sidebar menu

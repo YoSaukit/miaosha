@@ -1,7 +1,6 @@
 var Index = function () {
 
 
-
     return {
 
         //main function
@@ -217,7 +216,6 @@ var Index = function () {
             }
 
 
-
             function randValue() {
                 return (Math.floor(Math.random() * (1 + 50 - 20))) + 10;
             }
@@ -260,7 +258,7 @@ var Index = function () {
                         },
                         color: '#fff',
                         shadowSize: 0
-                    }, ],
+                    },],
 
                     {
 
@@ -328,15 +326,15 @@ var Index = function () {
                     ['JAN', 600],
                     ['FEB', 1100],
                     ['MAR', 1200],
-                    ['APR', 860], 
+                    ['APR', 860],
                     ['MAY', 1200],
                     ['JUN', 1450],
                     ['JUL', 1800],
                     ['AUG', 1200],
                     ['SEP', 600],
-                ];      
-           
-                        
+                ];
+
+
                 var plot_statistics = $.plot($("#site_activities"),
 
                     [{
@@ -358,15 +356,15 @@ var Index = function () {
                         color: '#9ACAE6',
                         shadowSize: 1
                     }, {
-                        data: data1,     
-                        lines: { 
-                            show: true, 
+                        data: data1,
+                        lines: {
+                            show: true,
                             fill: false,
-                            lineWidth: 3 
-                        },                   
+                            lineWidth: 3
+                        },
                         color: '#9ACAE6',
                         shadowSize: 0
-                    } 
+                    }
                     ],
 
                     {

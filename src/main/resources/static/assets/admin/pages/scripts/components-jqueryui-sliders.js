@@ -1,4 +1,3 @@
-
 var ComponentsjQueryUISliders = function () {
 
     return {
@@ -7,7 +6,7 @@ var ComponentsjQueryUISliders = function () {
             // basic
             $(".slider-basic").slider(); // basic sliders
 
-             // vertical range sliders
+            // vertical range sliders
             $("#slider-range").slider({
                 isRTL: Metronic.isRTL(),
                 range: true,
@@ -16,7 +15,7 @@ var ComponentsjQueryUISliders = function () {
                     $("#slider-range-amount").text("$" + ui.values[0] + " - $" + ui.values[1]);
                 }
             });
-            
+
             // snap inc
             $("#slider-snap-inc").slider({
                 isRTL: Metronic.isRTL(),

@@ -16,6 +16,7 @@ public class PromoServiceImpl implements PromoService {
 
     @Autowired
     private PromoDOMapper promoDOMapper;
+
     @Override
     public PromoModel getPromoByItemId(Integer itemId) {
         //获取对应商品的秒杀活动信息
@@ -23,26 +24,27 @@ public class PromoServiceImpl implements PromoService {
 
         //dateobject -> model
         PromoModel promoModel = convertFromDataObject(promoDO);
-        if(promoModel == null){
+        if (promoModel == null) {
             return null;
         }
 
         //判断当前时间是否秒杀即将开始或正在进行
-        if(promoModel.getStartDate().isAfterNow()){
+        if (promoModel.getStartDate().isAfterNow()) {
             promoModel.setStatus(1);
-        }else if(promoModel.getEndDate().isBeforeNow()){
+        } else if (promoModel.getEndDate().isBeforeNow()) {
             promoModel.setStatus(3);
-        }else{
+        } else {
             promoModel.setStatus(2);
         }
         return promoModel;
     }
-    private PromoModel convertFromDataObject(PromoDO promoDO){
-        if(promoDO == null){
+
+    private PromoModel convertFromDataObject(PromoDO promoDO) {
+        if (promoDO == null) {
             return null;
         }
         PromoModel promoModel = new PromoModel();
-        BeanUtils.copyProperties(promoDO,promoModel);
+        BeanUtils.copyProperties(promoDO, promoModel);
         promoModel.setPromoItemPrice(new BigDecimal(promoDO.getPromoItemPrice()));
         promoModel.setStartDate(new DateTime(promoDO.getStartDate()));
         promoModel.setEndDate(new DateTime(promoDO.getEndDate()));

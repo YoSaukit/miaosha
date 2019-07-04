@@ -54,7 +54,7 @@ var TableEditable = function () {
                 ],
                 // set the initial value
                 "iDisplayLength": 5,
-                
+
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
                     "sLengthMenu": "_MENU_ records",
@@ -64,16 +64,16 @@ var TableEditable = function () {
                     }
                 },
                 "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
+                    'bSortable': false,
+                    'aTargets': [0]
+                }
                 ]
             });
 
             jQuery('#sample_editable_1_wrapper .dataTables_filter input').addClass("form-control input-medium input-inline"); // modify table search input
             jQuery('#sample_editable_1_wrapper .dataTables_length select').addClass("form-control input-small"); // modify table per page dropdown
             jQuery('#sample_editable_1_wrapper .dataTables_length select').select2({
-                showSearchInput : false //hide search box with special css class
+                showSearchInput: false //hide search box with special css class
             }); // initialize select2 dropdown
 
             var nEditing = null;

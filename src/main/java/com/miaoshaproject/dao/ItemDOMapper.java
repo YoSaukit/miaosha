@@ -14,6 +14,7 @@ public interface ItemDOMapper {
      */
 
     List<ItemDO> listItem();
+
     int deleteByPrimaryKey(Integer id);
 
     /**
@@ -48,8 +49,6 @@ public interface ItemDOMapper {
      */
 
 
-
-
     int updateByPrimaryKeySelective(ItemDO record);
 
     /**
@@ -60,5 +59,5 @@ public interface ItemDOMapper {
      */
     int updateByPrimaryKey(ItemDO record);
 
-    int increaseSales(@Param("id")Integer ItemId,@Param("amount")Integer amount);
+    int increaseSales(@Param("id") Integer ItemId, @Param("amount") Integer amount);
 }

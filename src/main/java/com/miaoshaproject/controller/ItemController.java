@@ -18,20 +18,20 @@ import java.util.stream.Collectors;
 
 @Controller("item")
 @RequestMapping("/item")
-@CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
-public class ItemController extends BaseController{
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
+public class ItemController extends BaseController {
 
     @Autowired
     private ItemServiceImpl itemService;
 
     //创建商品的controller
-    @RequestMapping(value = "/create", method = {RequestMethod.POST},consumes = {CONTENT_TYPE_FORMED})
+    @RequestMapping(value = "/create", method = {RequestMethod.POST}, consumes = {CONTENT_TYPE_FORMED})
     @ResponseBody
-    public CommonReturnType createItem(@RequestParam(name = "title")String title,
-                                       @RequestParam(name = "description")String description,
+    public CommonReturnType createItem(@RequestParam(name = "title") String title,
+                                       @RequestParam(name = "description") String description,
                                        @RequestParam(name = "price") BigDecimal price,
-                                       @RequestParam(name = "stock")Integer stock,
-                                       @RequestParam(name = "imgUrl")String imgUrl) throws BusinessException {
+                                       @RequestParam(name = "stock") Integer stock,
+                                       @RequestParam(name = "imgUrl") String imgUrl) throws BusinessException {
 
         //封装service请求用来创建商品
         ItemModel itemModel = new ItemModel();
@@ -50,17 +50,18 @@ public class ItemController extends BaseController{
     //商品详情页浏览
     @RequestMapping(value = "/get", method = {RequestMethod.GET})
     @ResponseBody
-    public CommonReturnType getItem(@RequestParam(name = "id")Integer id){
+    public CommonReturnType getItem(@RequestParam(name = "id") Integer id) {
         ItemModel itemModel = itemService.getItemById(id);
 
         ItemVO itemVO = convertVOFromModel(itemModel);
 
         return CommonReturnType.create(itemVO);
     }
+
     //商品列表页面浏览
     @RequestMapping(value = "/list", method = {RequestMethod.GET})
     @ResponseBody
-    public CommonReturnType listItem(){
+    public CommonReturnType listItem() {
         List<ItemModel> itemModelList = itemService.listItem();
         //使用stream api将list内的itemModel转化为ItemVO
         List<ItemVO> itemVOList = itemModelList.stream().map(itemModel -> {
@@ -71,19 +72,19 @@ public class ItemController extends BaseController{
     }
 
 
-    private ItemVO convertVOFromModel(ItemModel itemModel){
-        if(itemModel == null){
+    private ItemVO convertVOFromModel(ItemModel itemModel) {
+        if (itemModel == null) {
             return null;
         }
         ItemVO itemVO = new ItemVO();
-        BeanUtils.copyProperties(itemModel,itemVO);
-        if(itemModel.getPromoModel()!=null){
+        BeanUtils.copyProperties(itemModel, itemVO);
+        if (itemModel.getPromoModel() != null) {
             //有正在进行或即将进行的秒杀活动
             itemVO.setPromoPrice(itemModel.getPromoModel().getPromoItemPrice());
             itemVO.setPromoId(itemModel.getPromoModel().getId());
             itemVO.setStartDate(itemModel.getPromoModel().getStartDate().toString(DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss")));
             itemVO.setPromoStatus(itemModel.getPromoModel().getStatus());
-        }else{
+        } else {
             itemVO.setPromoStatus(0);
         }
         return itemVO;

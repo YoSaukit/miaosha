@@ -6,10 +6,10 @@ var EcommerceOrdersView = function () {
         var grid = new Datatable();
         grid.init({
             src: $("#datatable_invoices"),
-            onSuccess: function(grid) {
+            onSuccess: function (grid) {
                 // execute some code after table records loaded
             },
-            onError: function(grid) {
+            onError: function (grid) {
                 // execute some code on network or other general error  
             },
             dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options 
@@ -20,7 +20,7 @@ var EcommerceOrdersView = function () {
                 "iDisplayLength": 20,
                 "bServerSide": true,
                 "sAjaxSource": "demo/ecommerce_order_invoices.php",
-                "aaSorting": [[ 1, "asc" ]] // set first column as a default sort by asc
+                "aaSorting": [[1, "asc"]] // set first column as a default sort by asc
             }
         });
 
@@ -38,9 +38,21 @@ var EcommerceOrdersView = function () {
                 grid.getDataTable().fnDraw();
                 grid.clearAjaxParams();
             } else if (action.val() == "") {
-                Metronic.alert({type: 'danger', icon: 'warning', message: 'Please select an action', container: grid.getTableWrapper(), place: 'prepend'});
+                Metronic.alert({
+                    type: 'danger',
+                    icon: 'warning',
+                    message: 'Please select an action',
+                    container: grid.getTableWrapper(),
+                    place: 'prepend'
+                });
             } else if (grid.getSelectedRowsCount() === 0) {
-                Metronic.alert({type: 'danger', icon: 'warning', message: 'No record selected', container: grid.getTableWrapper(), place: 'prepend'});
+                Metronic.alert({
+                    type: 'danger',
+                    icon: 'warning',
+                    message: 'No record selected',
+                    container: grid.getTableWrapper(),
+                    place: 'prepend'
+                });
             }
         });
     }
@@ -50,10 +62,10 @@ var EcommerceOrdersView = function () {
         var grid = new Datatable();
         grid.init({
             src: $("#datatable_credit_memos"),
-            onSuccess: function(grid) {
+            onSuccess: function (grid) {
                 // execute some code after table records loaded
             },
-            onError: function(grid) {
+            onError: function (grid) {
                 // execute some code on network or other general error  
             },
             dataTable: {
@@ -64,10 +76,10 @@ var EcommerceOrdersView = function () {
                 "iDisplayLength": 10,
                 "bServerSide": true,
                 "sAjaxSource": "demo/ecommerce_order_credit_memos.php",
-                "aoColumnDefs" : [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
-                    'bSortable' : true
+                "aoColumnDefs": [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
+                    'bSortable': true
                 }],
-                "aaSorting": [[ 0, "asc" ]] // set first column as a default sort by asc
+                "aaSorting": [[0, "asc"]] // set first column as a default sort by asc
             }
         });
 
@@ -78,10 +90,10 @@ var EcommerceOrdersView = function () {
         var grid = new Datatable();
         grid.init({
             src: $("#datatable_shipment"),
-            onSuccess: function(grid) {
+            onSuccess: function (grid) {
                 // execute some code after table records loaded
             },
-            onError: function(grid) {
+            onError: function (grid) {
                 // execute some code on network or other general error  
             },
             dataTable: {
@@ -92,10 +104,10 @@ var EcommerceOrdersView = function () {
                 "iDisplayLength": 10,
                 "bServerSide": true,
                 "sAjaxSource": "demo/ecommerce_order_shipment.php",
-                "aoColumnDefs" : [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
-                    'bSortable' : true
+                "aoColumnDefs": [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
+                    'bSortable': true
                 }],
-                "aaSorting": [[ 0, "asc" ]] // set first column as a default sort by asc
+                "aaSorting": [[0, "asc"]] // set first column as a default sort by asc
             }
         });
     }
@@ -105,10 +117,10 @@ var EcommerceOrdersView = function () {
         var grid = new Datatable();
         grid.init({
             src: $("#datatable_history"),
-            onSuccess: function(grid) {
+            onSuccess: function (grid) {
                 // execute some code after table records loaded
             },
-            onError: function(grid) {
+            onError: function (grid) {
                 // execute some code on network or other general error  
             },
             dataTable: {
@@ -119,10 +131,10 @@ var EcommerceOrdersView = function () {
                 "iDisplayLength": 20,
                 "bServerSide": true,
                 "sAjaxSource": "demo/ecommerce_order_history.php",
-                "aoColumnDefs" : [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
-                    'bSortable' : true
+                "aoColumnDefs": [{  // define columns sorting options(by default all columns are sortable extept the first checkbox column)
+                    'bSortable': true
                 }],
-                "aaSorting": [[ 0, "asc" ]] // set first column as a default sort by asc
+                "aaSorting": [[0, "asc"]] // set first column as a default sort by asc
             }
         });
 
@@ -140,12 +152,24 @@ var EcommerceOrdersView = function () {
                 grid.getDataTable().fnDraw();
                 grid.clearAjaxParams();
             } else if (action.val() == "") {
-                Metronic.alert({type: 'danger', icon: 'warning', message: 'Please select an action', container: grid.getTableWrapper(), place: 'prepend'});
+                Metronic.alert({
+                    type: 'danger',
+                    icon: 'warning',
+                    message: 'Please select an action',
+                    container: grid.getTableWrapper(),
+                    place: 'prepend'
+                });
             } else if (grid.getSelectedRowsCount() === 0) {
-                Metronic.alert({type: 'danger', icon: 'warning', message: 'No record selected', container: grid.getTableWrapper(), place: 'prepend'});
+                Metronic.alert({
+                    type: 'danger',
+                    icon: 'warning',
+                    message: 'No record selected',
+                    container: grid.getTableWrapper(),
+                    place: 'prepend'
+                });
             }
         });
-    } 
+    }
 
     var initPickers = function () {
         //init date pickers

@@ -71,7 +71,6 @@
                 '<span class="irs-disable-mask"></span>';
 
 
-
             return this.each(function () {
                 var settings = $.extend({
                     min: null,
@@ -95,7 +94,6 @@
                 }, options);
 
 
-
                 var slider = $(this),
                     self = this,
                     allow_values = false,
@@ -108,7 +106,6 @@
 
                 pluginCount += 1;
                 this.pluginCount = pluginCount;
-
 
 
                 // check default values
@@ -175,7 +172,6 @@
                 }
 
 
-
                 // extend from data-*
                 if (typeof slider.data("min") === "number") {
                     settings.min = parseFloat(slider.data("min"));
@@ -224,7 +220,6 @@
                 }
 
 
-
                 // Set Min and Max if no
                 settings.min = testNumber(settings.min);
                 if (!settings.min && settings.min !== 0) {
@@ -237,7 +232,6 @@
                 }
 
 
-
                 // Set values
                 if (Object.prototype.toString.call(settings.values) !== "[object Array]") {
                     settings.values = null;
@@ -248,7 +242,6 @@
                     settings.step = 1;
                     allow_values = true;
                 }
-
 
 
                 // Set From and To if no
@@ -268,7 +261,6 @@
                 if (!settings.step) {
                     settings.step = 1;
                 }
-
 
 
                 // fix diapason
@@ -349,7 +341,6 @@
                 }
 
 
-
                 // public methods
                 this.updateData = function (options) {
                     firstStart = true;
@@ -365,9 +356,6 @@
                     slider.data("isActive", false);
                     slider.show();
                 };
-
-
-
 
 
                 // private methods
@@ -1134,7 +1122,6 @@
                 };
 
 
-
                 // Disable state
                 var setMask = function () {
                     $container.addClass("irs-disabled");
@@ -1145,7 +1132,6 @@
                     $container.removeClass("irs-disabled");
                     $container.find(".irs-disable-mask").remove();
                 };
-
 
 
                 placeHTML();
