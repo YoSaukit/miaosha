@@ -2,11 +2,13 @@ com\miaoshaproject\error\EmBusinessError.class
 com\miaoshaproject\dao\SequenceDOMapper.class
 com\miaoshaproject\dao\ItemDOMapper.class
 com\miaoshaproject\dataobject\OrderDO.class
+com\miaoshaproject\config\RedisConfig.class
 com\miaoshaproject\service\model\UserModel.class
 com\miaoshaproject\dataobject\ItemDO.class
 com\miaoshaproject\dataobject\SequenceDO.class
 com\miaoshaproject\response\CommonReturnType.class
 com\miaoshaproject\service\impl\UserServiceImpl.class
+com\miaoshaproject\config\WebServerConfiguration$1.class
 com\miaoshaproject\validator\ValidatorImpl.class
 com\miaoshaproject\dataobject\ItemStockDO.class
 com\miaoshaproject\service\UserService.class
@@ -28,6 +30,7 @@ com\miaoshaproject\controller\ItemController.class
 com\miaoshaproject\controller\UserController.class
 com\miaoshaproject\service\model\PromoModel.class
 com\miaoshaproject\controller\viewobject\UserVO.class
+com\miaoshaproject\config\WebServerConfiguration.class
 com\miaoshaproject\dataobject\UserPasswordDO.class
 com\miaoshaproject\service\model\ItemModel.class
 com\miaoshaproject\controller\viewobject\ItemVO.class
